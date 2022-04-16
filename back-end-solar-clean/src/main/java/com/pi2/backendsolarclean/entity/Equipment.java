@@ -15,10 +15,10 @@ public class Equipment {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "status")
+    @Column(name = "equipment_status")
     private String status;
 
-    @Column(name = "speed")
+    @Column(name = "equipment_speed")
     private String speed;
 
     @Column(name = "direction")
@@ -27,8 +27,8 @@ public class Equipment {
     @Column(name = "water_consumption")
     private BigDecimal waterConsumption;
 
-    @Column(name = "battery_consumption")
-    private int batteryConsumption;
+    @Column(name = "water_level")
+    private int waterLevel;
 
     @Column(name = "battery_level")
     private String batteryLevel;
