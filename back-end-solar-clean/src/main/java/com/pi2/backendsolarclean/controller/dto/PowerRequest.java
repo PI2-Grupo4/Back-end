@@ -11,6 +11,6 @@ public class PowerRequest {
 
     private Long id;
 
-    private boolean itOn;
+    private boolean isOn;
 
 }

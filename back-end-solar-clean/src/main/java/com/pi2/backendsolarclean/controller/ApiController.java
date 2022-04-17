@@ -34,12 +34,10 @@ public class ApiController {
 
     @PutMapping("/power")
     public ResponseEntity<?> power(@RequestBody PowerRequest request) {
-        service.power(request.getId(), request.isItOn());
-        return ResponseEntity.ok(request.isItOn() ?
+        service.power(request.getId(), request.isOn());
+        return ResponseEntity.ok(request.isOn() ?
                 new Response("The equipment is turned on") : new Response("The equipment is turned off"));
     }
-
-
 
 }
 

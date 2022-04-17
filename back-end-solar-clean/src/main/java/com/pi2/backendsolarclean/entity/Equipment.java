@@ -1,6 +1,9 @@
 package com.pi2.backendsolarclean.entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -8,6 +11,9 @@ import java.math.BigDecimal;
 @Entity
 @Table(name="equipment")
 @Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class Equipment {
 
     @Id
@@ -16,10 +22,10 @@ public class Equipment {
     private Long id;
 
     @Column(name = "equipment_status")
-    private String status;
+    private boolean status;
 
     @Column(name = "equipment_speed")
-    private String speed;
+    private Integer speed;
 
     @Column(name = "direction")
     private boolean direction;
