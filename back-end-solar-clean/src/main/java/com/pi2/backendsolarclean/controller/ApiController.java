@@ -22,19 +22,19 @@ public class ApiController {
 
     @PutMapping("/changeDirection")
     public ResponseEntity<?> changeDirection(@RequestBody ChangeDirectionRequest request) {
-        //TODO change direction
+        service.changeDirection(request.getId(), request.isDirection());
         return ResponseEntity.ok(new Response("Changed Direction"));
     }
 
     @PutMapping("/changeSpeed")
     public ResponseEntity<?> changeSpeed(@RequestBody ChangeSpeedRequest request) {
-        //TODO change speed
+        service.changeSpeed(request.getId(), request.getSpeed());
         return ResponseEntity.ok(new Response("Changed Speed"));
     }
 
     @PutMapping("/power")
     public ResponseEntity<?> power(@RequestBody PowerRequest request) {
-        //TODO change speed
+        service.power(request.getId(), request.isItOn());
         return ResponseEntity.ok(request.isItOn() ?
                 new Response("The equipment is turned on") : new Response("The equipment is turned off"));
     }

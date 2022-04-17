@@ -17,4 +17,16 @@ public class EquipmentService {
         return repository.findById(id);
     }
 
+    public void changeDirection(Long id, boolean direction) {
+
+    }
+
+    public void changeSpeed(Long id, Integer speed) {
+
+    }
+
+    public void power(Long id, boolean isOn) {
+
+    }
+
 }
