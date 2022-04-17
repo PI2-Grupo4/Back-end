@@ -1,12 +1,12 @@
 package com.pi2.backendsolarclean.controller;
 
+import com.pi2.backendsolarclean.controller.dto.ChangeDirectionRequest;
+import com.pi2.backendsolarclean.controller.dto.ChangeSpeedRequest;
+import com.pi2.backendsolarclean.controller.dto.PowerRequest;
 import com.pi2.backendsolarclean.service.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
@@ -19,6 +19,27 @@ public class ApiController {
     public ResponseEntity<?> equipmentInfo(@RequestParam(value = "id") int id) {
         return ResponseEntity.ok(service.findById((long) id));
     }
+
+    @PutMapping("/changeDirection")
+    public ResponseEntity<?> changeDirection(@RequestBody ChangeDirectionRequest request) {
+        //TODO change direction
+        return ResponseEntity.ok(new Response("Changed Direction"));
+    }
+
+    @PutMapping("/changeSpeed")
+    public ResponseEntity<?> changeSpeed(@RequestBody ChangeSpeedRequest request) {
+        //TODO change speed
+        return ResponseEntity.ok(new Response("Changed Speed"));
+    }
+
+    @PutMapping("/power")
+    public ResponseEntity<?> power(@RequestBody PowerRequest request) {
+        //TODO change speed
+        return ResponseEntity.ok(request.isItOn() ?
+                new Response("The equipment is turned on") : new Response("The equipment is turned off"));
+    }
+
+
 
 }
 
