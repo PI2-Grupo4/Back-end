@@ -17,4 +17,28 @@ public class EquipmentService {
         return repository.findById(id);
     }
 
+    public void changeDirection(Long id, boolean direction) {
+        Equipment equipment = repository.findById(id).get();
+
+        equipment.setDirection(direction);
+
+        repository.save(equipment);
+    }
+
+    public void changeSpeed(Long id, Integer speed) {
+        Equipment equipment = repository.findById(id).get();
+
+        equipment.setSpeed(speed);
+
+        repository.save(equipment);
+    }
+
+    public void power(Long id, boolean isOn) {
+        Equipment equipment = repository.findById(id).get();
+
+        equipment.setStatus(isOn);
+
+        repository.save(equipment);
+    }
+
 }
