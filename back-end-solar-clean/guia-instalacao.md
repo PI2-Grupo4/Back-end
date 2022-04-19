@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `back-end-db`.`equipment` (
   `water_level` INT(3) DEFAULT NULL,
   `battery_level` INT(3) DEFAULT NULL,
   `battery_status` INT(2) DEFAULT NULL,
-  `user_id` BIGINT(20) NOT NULL
+  `user_id` BIGINT(20) NOT NULL,
   PRIMARY KEY (`equipment_id`)
 ) 
 ENGINE=InnoDB
