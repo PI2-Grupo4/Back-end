@@ -33,18 +33,6 @@ com as preferências do cliente. A versão utilizada no projeto é a 1.6.9 e pod
 ## Criando o banco de dados
 
 A estrutura do banco de dados deve ser executada no MySQL para que a estrutura utilizada no projeto exista na máquina.
-O arquivo application.properties possui configurações iniciais que do usuário que possui acesso ao banco:
-
-- **spring.datasource.username**: Usuário que acessa o banco de dados.
-- **spring.datasource.password**: Senha do usuário que acessa o banco de dados.
-
-Para o correto funcionamento do banco, é necessário o preenchimento deste campo como no seguinte exemplo:
-
-```
-spring.datasource.username=api_user
-spring.datasource.password=api_password
-```
-
 
 ```sql
 -- -----------------------------------------------------
@@ -90,6 +78,37 @@ ALTER TABLE `equipment` ADD CONSTRAINT FK_EQUIPAMENTO_2
     FOREIGN KEY (user_id)
         REFERENCES `user` (user_id)
         ON DELETE RESTRICT;
+```
+
+Para casos de testes, podem ser inseridos os seguintes dados no banco:
+
+```mysql
+INSERT INTO `back-end-db`.`user` VALUES (null,'operador','Joao Pedro', 'joao@email.com', 'joao123');
+INSERT INTO `back-end-db`.`equipment` VALUES (null,0,'3', 0, 555.01, 99, 98, 1, 1);
+```
+
+O arquivo application.properties possui configurações iniciais que do usuário que possui acesso ao banco:
+
+- **spring.datasource.username**: Usuário que acessa o banco de dados.
+- **spring.datasource.password**: Senha do usuário que acessa o banco de dados.
+
+Primeiro é necessário um usuário da aplicação para acesso ao banco de dados conforme exemplo a seguir:
+
+```mysql
+CREATE USER 'username'@'host' IDENTIFIED BY 'password';
+```
+
+O usuário precisa ter acesso ao esquema e as tabelas.
+
+```mysql
+GRANT ALL PRIVILEGES ON `back-end-db`.* TO `username`@`host`;
+```
+
+Para o correto funcionamento do banco, é necessário o preenchimento deste campo como no seguinte exemplo:
+
+```
+spring.datasource.username=username
+spring.datasource.password=password
 ```
 
 ## Rodando a aplicação
