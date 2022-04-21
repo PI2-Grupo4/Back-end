@@ -11,6 +11,7 @@ public class PowerRequest {
 
     private Long id;
 
-    private boolean isOn;
+    //1 = Ligado, 2 = Limpando, 3 = Desligado
+    private Integer status;
 
 }

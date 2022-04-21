@@ -22,7 +22,7 @@ public class Equipment {
     private Long id;
 
     @Column(name = "status")
-    private boolean status;
+    private Integer status;
 
     @Column(name = "speed")
     private Integer speed;
@@ -43,6 +43,6 @@ public class Equipment {
     private Integer batteryStatus;
 
     @Column(name = "user_id")
-    private Integer user_id;
+    private Integer userId;
 
 }
