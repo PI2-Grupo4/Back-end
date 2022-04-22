@@ -30,7 +30,6 @@ public class MqttPublisher {
             System.out.println("Message published");
             sampleClient.disconnect();
             sampleClient.close();
-            System.exit(0);
         } catch(MqttException me) {
 
             me.printStackTrace();

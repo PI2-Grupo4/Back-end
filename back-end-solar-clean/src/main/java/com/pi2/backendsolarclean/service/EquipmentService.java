@@ -2,6 +2,7 @@ package com.pi2.backendsolarclean.service;
 
 import com.pi2.backendsolarclean.dao.EquipmentRepository;
 import com.pi2.backendsolarclean.entity.Equipment;
+import com.pi2.backendsolarclean.mqtt.MqttPublisher;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import java.util.Optional;
 @Service
 public class EquipmentService {
 
+    MqttPublisher publisher = new MqttPublisher();
     @Resource
     private EquipmentRepository repository;
 
@@ -26,9 +28,10 @@ public class EquipmentService {
 
     public void changeDirection(Long id, boolean direction) {
         Equipment equipment = repository.findById(id).get();
+        Integer msg = direction ? 1 : 0;
 
         equipment.setDirection(direction);
-
+        publisher.publish("changeDirection " + id + " " + msg);
         repository.save(equipment);
     }
 
@@ -36,7 +39,7 @@ public class EquipmentService {
         Equipment equipment = repository.findById(id).get();
 
         equipment.setSpeed(speed);
-
+        publisher.publish("changeSpeed " + id + " " + speed);
         repository.save(equipment);
     }
 
@@ -44,13 +47,11 @@ public class EquipmentService {
         Equipment equipment = repository.findById(id).get();
 
         equipment.setStatus(status);
-
+        publisher.publish("changeStatus " + id + " " + status);
         repository.save(equipment);
     }
 
     public void equipmentInfo(String message) {
-
-        //Speed;Status;Battery;Water;Direction
         String[] payload = message.toString().split(" ");
         Equipment equipment = repository.findById(Long.valueOf(payload[0])).get();
 
