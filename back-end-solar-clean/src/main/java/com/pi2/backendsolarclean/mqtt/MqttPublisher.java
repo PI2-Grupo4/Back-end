@@ -8,8 +8,8 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 public class MqttPublisher {
 
-    public void publish(String content) {
-        String topic        = "equipment157";
+    public void publish(String content, Long id) {
+        String topic        = "equipment" + id;
         //Id;Status;Speed;Direction;Battery Status;Battery Level; Water Consumption; Water Level
         int qos             = 0;
         String broker       = "tcp://localhost:1883";

@@ -31,7 +31,7 @@ public class EquipmentService {
         Integer msg = direction ? 1 : 0;
 
         equipment.setDirection(direction);
-        publisher.publish("changeDirection " + id + " " + msg);
+        publisher.publish("changeDirection " + id + " " + msg, id);
         repository.save(equipment);
     }
 
@@ -39,7 +39,7 @@ public class EquipmentService {
         Equipment equipment = repository.findById(id).get();
 
         equipment.setSpeed(speed);
-        publisher.publish("changeSpeed " + id + " " + speed);
+        publisher.publish("changeSpeed " + id + " " + speed, id);
         repository.save(equipment);
     }
 
@@ -47,7 +47,7 @@ public class EquipmentService {
         Equipment equipment = repository.findById(id).get();
 
         equipment.setStatus(status);
-        publisher.publish("changeStatus " + id + " " + status);
+        publisher.publish("changeStatus " + id + " " + status, id);
         repository.save(equipment);
     }
 
