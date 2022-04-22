@@ -1,17 +1,12 @@
 package com.pi2.backendsolarclean.mqtt;
 
-import com.pi2.backendsolarclean.entity.Equipment;
+import com.pi2.backendsolarclean.configuration.SpringContext;
 import com.pi2.backendsolarclean.service.EquipmentService;
 import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-@Component
 public class MqttSubscriber implements MqttCallback {
 
-    @Autowired
-    private EquipmentService service;
     private static final String brokerUrl ="tcp://localhost:1883";
     private static final String clientId = "javasub";
 
@@ -50,8 +45,8 @@ public class MqttSubscriber implements MqttCallback {
 
     public void messageArrived(String topic, MqttMessage message) throws Exception {
 
-        Equipment equipment;
-        //Speed;Status;Battery;Water;Direction
+        EquipmentService service = SpringContext.getBean(EquipmentService.class);
+
         String[] payload = message.toString().split(" ");
 
         System.out.println("| Topic:" + topic);
