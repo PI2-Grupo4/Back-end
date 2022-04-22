@@ -20,6 +20,12 @@ public class ApiController {
         return ResponseEntity.ok(service.findById((long) id));
     }
 
+    @GetMapping("/listEquipments")
+    public ResponseEntity<?> listEquipments(@RequestParam(value = "id") Integer id) {
+        return ResponseEntity.ok(service.findAllByUserId(id));
+    }
+
+
     @PutMapping("/changeDirection")
     public ResponseEntity<?> changeDirection(@RequestBody ChangeDirectionRequest request) {
         service.changeDirection(request.getId(), request.isDirection());
@@ -34,9 +40,8 @@ public class ApiController {
 
     @PutMapping("/power")
     public ResponseEntity<?> power(@RequestBody PowerRequest request) {
-        service.power(request.getId(), request.isOn());
-        return ResponseEntity.ok(request.isOn() ?
-                new Response("The equipment is turned on") : new Response("The equipment is turned off"));
+        service.power(request.getId(), request.getStatus());
+        return ResponseEntity.ok(new Response("Changed Status"));
     }
 
 }
