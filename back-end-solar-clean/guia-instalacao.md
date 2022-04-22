@@ -61,7 +61,7 @@ AUTO_INCREMENT = 1;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `back-end-db`.`equipment` (
   `equipment_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
-  `status` BIT DEFAULT 0,
+  `status` INT(1) DEFAULT 3,
   `speed` VARCHAR(3) DEFAULT NULL,
   `direction` BIT DEFAULT 0,
   `water_consumption` DECIMAL(5,2) DEFAULT NULL,
@@ -126,7 +126,11 @@ A API estará rodando na [porta 8080](http://localhost:8080). E o Mosquitto MQTT
 
 **GET: `/api/equipmentInfo?id=`**
 
-Para receber os dado do equipamento.
+Para receber os dados de um equipamento.
+
+**GET: `/api/listEquipments?id=`**
+
+Para listar os dados dos equipamentos de um usuário específico.
 
 **PUT: `/api/changeDirection`**
 
